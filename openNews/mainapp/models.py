@@ -4,7 +4,7 @@ class Photo(models.Model):
     photo = models.ImageField()
 
 class Post(models.Model):
-    text = models.CharField()
+    text = models.TextField()
     """
     Deleting a Post shouldn't cause related Photo to also
     get deleted.
@@ -41,7 +41,7 @@ class Article(models.Model):
         return self.headline
 
 class Comments(models.Model):
-    text = models.CharField(max_length=500)
+    text = models.TextField()
     like = models.IntegerField()
     dislike = models.IntegerField()
     article = models.ForeignKey(
