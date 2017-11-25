@@ -5,13 +5,13 @@ from mainapp.models import Section, Article
 class SectionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Section
-        fields = ('text')
+        fields = ('name',)
 
 class ArticleSerializer(serializers.HyperlinkedModelSerializer):
     post = serializers.HyperlinkedRelatedField(
-        read_only = False,
+        read_only = True,
         view_name = 'post'
     )
     class Meta:
         model = Article
-        fields = ('headline', 'like', 'dislike', 'post')
+        fields = ('headline', 'like', 'dislike', 'post',)
