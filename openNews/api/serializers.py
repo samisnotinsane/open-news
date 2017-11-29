@@ -4,7 +4,7 @@ from rest_framework import serializers
 from mainapp.models import Section, Article
 
 class SectionSerializer(serializers.HyperlinkedModelSerializer):
-    name = serializers.CharField(read_only=True, allow_null=False)
+    name = serializers.CharField(allow_blank=False)
     class Meta:
         model = Section
         fields = ('name',)
