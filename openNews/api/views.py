@@ -1,6 +1,6 @@
-from mainapp.models import Section, Article
+from .models import Section, Article, Photo
 from rest_framework import viewsets, generics
-from api.serializers import SectionSerializer, ArticleSerializer
+from api.serializers import SectionSerializer, ArticleSerializer, PhotoSerializer
 
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -25,19 +25,15 @@ class UserCreateAPIView(generics.CreateAPIView):
     serializer_class = UserCreateSerializer
     permission_classes = [AllowAny]
 
-
-
 class UserAccountView(generics.CreateAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
     permission_classes = [AllowAny]
 
-
 class ProfilePictureView(generics.CreateAPIView):
     queryset = ProfilePicture.objects.all()
     serializer_class = ProfilePictureSerializer
     permission_classes = [AllowAny]
-
 
 class UserLoginAPIView(APIView):
     permission_classes = [AllowAny]
@@ -68,3 +64,6 @@ class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all().order_by('-like')
     serializer_class = ArticleSerializer
 
+class PhotoViewSet(viewsets.ModelViewSet):
+    queryset = Photo.objects.all()
+    serializer_class = PhotoSerializer

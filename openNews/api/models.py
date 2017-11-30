@@ -5,23 +5,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-class Photo(models.Model):
-    photo = models.ImageField()
-
-class Post(models.Model):
-    text = models.TextField()
-    """
-    Deleting a Post shouldn't cause related Photo to also
-    get deleted.
-    """
-    photo = models.ManyToManyField(
-        Photo,
-        symmetrical=False
-    )
-
-    def __str__(self):
-        return self.text
-
 class Section(models.Model):
     # Section name should be concise.
     name = models.CharField(max_length=50, blank=False)
@@ -31,19 +14,17 @@ class Section(models.Model):
 
 class Article(models.Model):
     # Article headline should be succinct.
-    headline = models.CharField(max_length=140) 
-    like = models.IntegerField()
-    dislike = models.IntegerField()
-    # Related Post should be deleted upon deleting an Article.
-    # Related Post should not be empty for a given Article.
-    post = models.OneToOneField(
-        Post,
-        on_delete=models.CASCADE,
-        null=False
-    )
+    headline = models.CharField(max_length=140)
+    body = models.TextField()
+    like = models.IntegerField(default=0)
+    dislike = models.IntegerField(default=0)
 
     def __str__(self):
         return self.headline
+
+class Photo(models.Model):
+    photo = models.ImageField()
+    article_id = models.ForeignKey(Article)
 
 class Comments(models.Model):
     text = models.TextField()
@@ -63,15 +44,16 @@ class Account(models.Model):
     def __str__(self):
         return self.user.username
 
-    def Create_Account(Sender, **kwargs):
-        if kwargs['created']:
-            user_account = Account.objects.create(user = kwargs['instance'])
+    # def Create_Account(Sender, **kwargs):
+    #     if kwargs['created']:
+    #         user_account = Account.objects.create(user = kwargs['instance'])
     
-    post_save.connect(Create_Account, sender = User)
+    # post_save.connect(Create_Account, sender = User)
 
 class Comment(models.Model):
     content = models.CharField(max_length=50, null=False, blank = False)
     user = models.ForeignKey(User)
+    article = models.ForeignKey(Article)
     like = models.IntegerField(default=0)
     dislike = models.IntegerField(default=0)
     time = models.DateTimeField(auto_now_add=True)
