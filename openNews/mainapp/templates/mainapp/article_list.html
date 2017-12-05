@@ -11,7 +11,8 @@
     <ul>
         {% for article in article_list %}
             <li>
-                <a href="{{ article.get_absolute_url }}">{{ article.headline }}</a> 
+                    {% comment %} {{ article.get_absolute_url }} {% endcomment %}
+                <a href="{{ article.id }}">{{ article.headline }}</a> 
                 Likes: {{article.like}} | Dislikes: {{article.dislike}}
             </li>
         {% endfor %}
