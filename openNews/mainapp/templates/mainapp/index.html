@@ -1,1 +1,15 @@
-<h1>Welcome to OpenNews!</h1><p>You are now viewing our index page.</p>
+{% extends "mainapp/base.html" %}
+
+{% block content %}
+<h1>Welcome to OpenNews!</h1>
+  <p>You are now viewing our index page.</p>
+
+<h2>Content</h2>
+
+  <p>The site has the following record counts:</p>
+  <ul>
+    <li><strong>Sections:</strong> {{ num_sections }}</li>
+    <li><strong>Articles:</strong> {{ num_articles }}</li>
+  </ul>
+
+{% endblock %}
