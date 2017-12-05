@@ -18,6 +18,7 @@ class Article(models.Model):
     body = models.TextField()
     like = models.IntegerField(default=0)
     dislike = models.IntegerField(default=0)
+    section = models.ForeignKey(Section, null=False, on_delete = models.CASCADE)
 
     def __str__(self):
         return self.headline
