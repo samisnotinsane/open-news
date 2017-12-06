@@ -13,13 +13,12 @@ def index(request):
         },
     )
 
-def sections(request):
-    sections = Section.objects.all()
-
-    context: {
-        'sections': sections
-    }
-    return render(request, "mainapp/sections.html", context)
+# def sections(request):
+#     topics = Section.objects.all()
+#     return render(request, "mainapp/section_list.html", context= {
+#             'sections': topics
+#         }
+#     )
 
 def login(request):
     print('Not yet implemented')
@@ -32,3 +31,7 @@ def register(request):
 class ArticleListView(generic.ListView):
     model = Article
     template_name = 'mainapp/article_list.html'
+
+class SectionListView(generic.ListView):
+    model = Section
+    template_name = 'mainapp/section_list.html'

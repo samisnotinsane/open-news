@@ -1,0 +1,17 @@
+{% extends "mainapp/base.html" %}
+
+{% block content %}
+    <h1>Sections</h1>
+
+    {% if section_list %}
+    <ul>
+        {% for section in section_list %}
+            <li>
+                <a href="{{ section.get_absolute_url }}">{{ section.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Sorry, due to an error we were unable to load sections. Please try again.</p>
+    {% endif %}
+{% endblock %}
