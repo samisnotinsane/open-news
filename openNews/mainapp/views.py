@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views import generic
 
 from api.models import Section, User, Article
 
@@ -11,8 +12,6 @@ def index(request):
         'num_sections': num_sections
         },
     )
-
-    # return HttpResponse("<h1>Welcome to OpenNews!</h1><br/><p>You are now viewing our index page.</p>")
 
 def sections(request):
     sections = Section.objects.all()
@@ -30,3 +29,6 @@ def register(request):
     print('Not yet implemented')
     return HttpResponse("Not yet implemented")
     
+class ArticleListView(generic.ListView):
+    model = Article
+    template_name = 'mainapp/article_list.html'

@@ -12,6 +12,7 @@
   <!-- Add additional CSS in static file -->
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <img src="{% static 'images/open_news_logo.png' %}" alt="Open News" style="width:110px;height:110px;"/>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
       <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url 'sections' %}">Sections</a></li>
-          <li><a href="">Articles</a></li>
+          <li><a href="{% url 'articles' %}">Articles</a></li>
       </ul>
      {% endblock %}
       </div>
