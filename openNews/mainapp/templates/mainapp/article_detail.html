@@ -1,0 +1,19 @@
+{% extends "mainapp/base.html" %}
+
+<head>
+    {% block title %}<title>{{ article.headline }} | Open News</title>{% endblock %}
+</head>
+
+{% block content %}
+  <h1>{{ article.headline }}</h1>
+  <div style="margin-left:20px;margin-top:20px">
+    <p><strong>Section:</strong> <a href="">{{ article.section }}</a></p> <!-- author detail link not yet defined -->
+  </div>
+  <div style="margin-left:50px;margin-top:20px;margin-right:300px">
+    <p>{{ article.body }}</p>
+  </div>
+  <div style="margin-left:20px;margin-top:20px;margin-bottom:50px">
+    <i class="fa fa-thumbs-up" aria-hidden="true"> {{article.like}}</i>
+    <i class="fa fa-thumbs-down" aria-hidden="true"> {{article.dislike}}</i>
+  </div>
+{% endblock %}

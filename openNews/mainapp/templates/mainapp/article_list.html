@@ -1,5 +1,9 @@
 {% extends "mainapp/base.html" %}
 
+<head>
+    {% block title %}<title>Articles | Open News</title>{% endblock %}
+</head>
+
 {% block content %}
     <h1>Articles</h1>
 
@@ -7,7 +11,8 @@
     <ul>
         {% for article in article_list %}
             <li>
-                <a href="{{ article.get_absolute_url }}">{{ article.headline }}</a> Likes: ({{article.like}})
+                <a href="{{ article.get_absolute_url }}">{{ article.headline }}</a> 
+                Likes: {{article.like}} | Dislikes: {{article.dislike}}
             </li>
         {% endfor %}
     </ul>

@@ -32,6 +32,10 @@ class ArticleListView(generic.ListView):
     model = Article
     template_name = 'mainapp/article_list.html'
 
+class ArticleDetailView(generic.DetailView):
+    model = Article
+    template_name = 'mainapp/article_detail.html'
+
 class SectionListView(generic.ListView):
     model = Section
     template_name = 'mainapp/section_list.html'
