@@ -1,14 +1,20 @@
 {% extends "mainapp/base.html" %}
 
 <head>
-  {% block title %}<title>Home - Open News | An open source news platform.</title>{% endblock %}
+  {% block title %}<title>Home - {{ appname }} | {{ apptagline }}</title>{% endblock %}
 </head>
 
 {% block content %}
-<h1>OpenNews</h1>
+<div>
+    <h1 id='latest-news-index'>Latest</h1>
+    <p id='latest-headline-index'>{{ latest_article }}</p>
+</div>
+
+
+<h2>OpenNews</h2>
   <p>An open source publishing platform.</p>
 
-<h2>Content</h2>
+<h3>Content</h3>
 
   <p>The site has the following record counts:</p>
   <ul>

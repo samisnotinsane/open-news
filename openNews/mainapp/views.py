@@ -4,11 +4,18 @@ from django.views import generic
 
 from api.models import Section, User, Article
 
+appname = 'Open News'
+apptagline = 'An open source news platform.'
+
 def index(request):
     num_articles = Article.objects.all().count()
+    latest_article = Article.objects.order_by('id')[0]
     num_sections = Section.objects.all().count()
     return render(request, 'mainapp/index.html', context = {
+        'appname': appname,
+        'apptagline': apptagline,
         'num_articles': num_articles,
+        'latest_article': latest_article,
         'num_sections': num_sections
         },
     )

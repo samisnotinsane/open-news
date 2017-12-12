@@ -22,11 +22,11 @@ class Article(models.Model):
     dislike = models.IntegerField(default=0)
     section = models.ForeignKey(Section, null=False, on_delete=models.CASCADE)
 
-    def get_absolute_url(self):
-        """
-        Returns the url to access a particular instance of Article.
-        """
-        return reverse('article-detail', kwargs={'pk': self.pk})
+    # def get_absolute_url(self):
+    #     """
+    #     Returns the url to access a particular instance of Article.
+    #     """
+    #     return reverse('article-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.headline
