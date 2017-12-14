@@ -9,6 +9,18 @@
   {% if num_articles > 0 %}
     <h1 id='latest-news-index'>Latest</h1>
     <p id='latest-headline-index'>{{ latest_article }}</p>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ latest_article }}</h3>
+        </div>
+        <div class="panel-body">
+          Panel content
+        </div>
+      </div>
+    
+    {% else %}
+    <p>Sorry, we do not have any news at this time :\</p>
   {% endif %}
 </div>
 
