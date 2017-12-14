@@ -2,6 +2,9 @@
 image                = new Image();
 image.src            = '/static/mainapp/robin.gif';
 var hostname = document.location.hostname + '/';
+var ajax = new XHR();
+
+var sectionNames = [];
 
 function XHR() {
     try {
@@ -15,7 +18,6 @@ function XHR() {
 
 function populateSectionDropdown(data) {
     var menu = $( ".dropdown-menu" );
-    menu.children().remove();
     $.each(data, function(index, value) {
         itemName = value.name;
         var menuItem = '<li><a href="' + 
@@ -24,36 +26,55 @@ function populateSectionDropdown(data) {
     });
 }
 
-$(document).ready(function() {
-    var ajax = new XHR();
+function handleSectionDropdown() {
+    var sectionDropdown = $("#dropdown-section");
+    // Event handler for section dropdown (nav-bar).
+    sectionDropdown.on("click", function() {
+        console.log("[EVENT] - click/section-dropdown");
+        // Only query API if not already loaded.
+        if(sectionNames.length == 0) {
+            ajax.open('GET', '/api/sections/');
+            ajax.onload = function() {
+                if(this.readyState == 4) {
+                    console.log("[INFO] - XHR loaded data successfully.");
+                    sectionNames = JSON.parse(ajax.responseText);
+                    populateSectionDropdown(sectionNames);
+                }
+            }
+            ajax.onerror = function() { 
+                console.log("[WARN] - XHR failed to load data.");
+            }
+            ajax.send();
+        }
+    });
+}
 
+function showArticle() {
+    var title = $(".blog-post-title");
+    var section = $("#article-section");
+
+
+}
+
+function likeArticle() {
+    var thumbsUpBtn = $(".fa-thumbs-up");
+    console.log("[EVENT] - click/likeArticle");
+    // get article number
+    // 
+}
+
+function dislikeArticle() {
+    var thumbsDownBtn = $(".fa-thumbs-down");
+    console.log("[EVENT] - click/dislikeArticle");
+}
+
+$(document).ready(function() {
+    
     console.log('[INFO] - Document loaded. Welcome to OpenNews!')
     console.log('[INFO] - Hostname: [' + hostname + ']');
 
-    var sectionDropdown = $("#dropdown-section");
-    sectionDropdown.on("click", function() {
-        console.log("[EVENT] - click/section-dropdown");
-
-        var currentUrl = document.location.toString();
-        console.log("[INFO] - current location: " + currentUrl);
-        
-        ajax.open('GET', 'api/sections/')
-        ajax.onload = function() {
-            if(this.readyState == 4) {
-                console.log("[INFO] - XHR loaded data successfully.");
-
-                var data = JSON.parse(ajax.responseText);
-                populateSectionDropdown(data);
-            }
-        }
-
-        ajax.onerror = function() { 
-            console.log("[WARN] - XHR failed to load data.");
-        }
-        ajax.send();
-    });
-
-    
+    handleSectionDropdown();
+    showArticle();
 
     // Populate 'Section' dropdown with topics.
     // $.getJSON("api/sections/", function(data) {

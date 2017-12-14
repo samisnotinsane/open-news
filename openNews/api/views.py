@@ -14,7 +14,11 @@ from rest_framework.permissions import(
 from django.contrib.auth import get_user_model
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
-from .serializers import UserCreateSerializer, UserLoginSerializer, AccountSerializer, CommentSerializer, ProfilePictureSerializer
+from .serializers import (UserCreateSerializer, UserLoginSerializer, 
+    AccountSerializer, CommentSerializer, ProfilePictureSerializer,
+    AccountUpdateSerializer, UserUpdateSerializer, CommentUpdateSerializer
+)
+
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from .models import Account, Comment, ProfilePicture
 
@@ -60,10 +64,25 @@ class SectionViewSet(viewsets.ModelViewSet):
     queryset = Section.objects.all()
     serializer_class = SectionSerializer
 
-class ArticleViewSet(viewsets.ModelViewSet):
+class ArticleViewSet(generics.RetrieveUpdateAPIView):
     queryset = Article.objects.all().order_by('-like')
     serializer_class = ArticleSerializer
 
 class PhotoViewSet(viewsets.ModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializer
+
+class UserUpdateAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    permission_classes = [AllowAny]
+    serializer_class = UserUpdateSerializer
+	
+class UserAccountUpdateView(generics.RetrieveUpdateAPIView):
+    queryset = Account.objects.all()
+    serializer_class = AccountUpdateSerializer
+    permission_classes = [AllowAny]
+	
+class CommentUpdateView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentUpdateSerializer
+    permission_classes = [AllowAny]

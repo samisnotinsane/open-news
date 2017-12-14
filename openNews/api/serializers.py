@@ -24,10 +24,10 @@ from django.core.validators import RegexValidator
 User = get_user_model()
 
 
-class ArticleSerializer(HyperlinkedModelSerializer):
+class ArticleSerializer(ModelSerializer):
     headline = CharField()
-    like = IntegerField(read_only=True)
-    dislike = IntegerField(read_only=True)
+    like = IntegerField()
+    dislike = IntegerField()
     body = CharField()
 
     class Meta:
@@ -165,3 +165,45 @@ class PhotoSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Photo
         fields = ('photo', 'article_id')
+
+
+class UserSerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name')
+
+
+class UserUpdateSerializer(HyperlinkedModelSerializer):
+    email = EmailField(read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('email', 'password')
+
+        extra_kwargs = {
+            "password":
+                {
+                    "write_only": True
+                }
+        }
+
+
+class AccountUpdateSerializer(HyperlinkedModelSerializer):
+    user = UserSerializer(read_only=True)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    # validators should be a list
+    phone_number = CharField(validators=[phone_regex], max_length=15, allow_null=True)
+    birth_date = DateField(allow_null=True)
+    location = CharField(allow_null=True)
+
+    class Meta:
+        model = Account
+        fields = ('user', 'phone_number', 'birth_date', 'location')
+
+class CommentUpdateSerializer(HyperlinkedModelSerializer):
+    user = UserSerializer(read_only=True)
+    content = CharField(max_length=500)
+
+    class Meta:
+        model = Comment
+        fields = ('user', 'content')

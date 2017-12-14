@@ -1,19 +1,112 @@
 {% extends "mainapp/base.html" %}
 
 <head>
-    {% block title %}<title>{{ article.headline }} | Open News</title>{% endblock %}
+  {% block title %}
+  <title>{{ article.headline }} | Open News</title>{% endblock %}
 </head>
 
 {% block content %}
-  <h1>{{ article.headline }}</h1>
-  <div style="margin-left:20px;margin-top:20px">
-    <p><strong>Section:</strong> <a href="">{{ article.section }}</a></p> <!-- author detail link not yet defined -->
-  </div>
-  <div style="margin-left:50px;margin-top:20px;margin-right:300px">
-    <p>{{ article.body }}</p>
-  </div>
-  <div style="margin-left:20px;margin-top:20px;margin-bottom:50px">
-    <i class="fa fa-thumbs-up" aria-hidden="true"> {{article.like}}</i>
-    <i class="fa fa-thumbs-down" aria-hidden="true"> {{article.dislike}}</i>
-  </div>
+<body>
+  <main role="main" class="container">
+
+    <div class="row">
+
+      <div class="col-sm-8 blog-main">
+
+        <div class="blog-post">
+          <h2 class="blog-post-title">{{ article.headline }}</h2>
+          <p class="blog-post-meta">January 1, 2014 in
+            <a id="article-section" href="#">{{ article.section }}</a>
+          </p>
+          <p id="article-body">{{ article.body }}</p>
+        </div>
+        <!-- /.blog-post -->
+
+        <nav class="blog-pagination">
+          <a class="btn btn-outline-primary" onclick="likeArticle()"><i class="fa fa-thumbs-up" aria-hidden="true"> {{article.like}}</i></a>
+          <a class="btn btn-outline-primary" onclick="dislikeArticle()"><i class="fa fa-thumbs-down" aria-hidden="true"> {{article.dislike}}</i></a>
+        </nav>
+
+      </div>
+      <!-- /.blog-main -->
+
+      <aside class="col-sm-3 ml-sm-auto blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+          <h4>About</h4>
+          <p>Etiam porta
+            <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum
+            nulla sed consectetur.</p>
+        </div>
+        <div class="sidebar-module">
+          <h4>Archives</h4>
+          <ol class="list-unstyled">
+            <li>
+              <a href="#">March 2014</a>
+            </li>
+            <li>
+              <a href="#">February 2014</a>
+            </li>
+            <li>
+              <a href="#">January 2014</a>
+            </li>
+            <li>
+              <a href="#">December 2013</a>
+            </li>
+            <li>
+              <a href="#">November 2013</a>
+            </li>
+            <li>
+              <a href="#">October 2013</a>
+            </li>
+            <li>
+              <a href="#">September 2013</a>
+            </li>
+            <li>
+              <a href="#">August 2013</a>
+            </li>
+            <li>
+              <a href="#">July 2013</a>
+            </li>
+            <li>
+              <a href="#">June 2013</a>
+            </li>
+            <li>
+              <a href="#">May 2013</a>
+            </li>
+            <li>
+              <a href="#">April 2013</a>
+            </li>
+          </ol>
+        </div>
+        <div class="sidebar-module">
+          <h4>Elsewhere</h4>
+          <ol class="list-unstyled">
+            <li>
+              <a href="#">GitHub</a>
+            </li>
+            <li>
+              <a href="#">Twitter</a>
+            </li>
+            <li>
+              <a href="#">Facebook</a>
+            </li>
+          </ol>
+        </div>
+      </aside>
+      <!-- /.blog-sidebar -->
+
+    </div>
+    <!-- /.row -->
+
+  </main>
+  <!-- /.container -->
+
+  <footer class="blog-footer">
+    <p>OpenNews | 2017</p>
+    <p>
+      <a href="#">Back to top</a>
+    </p>
+  </footer>
+</body>
+
 {% endblock %}

@@ -22,12 +22,12 @@
     background: rgb(40, 158, 212);
 }
 
-.navbar-default .navbar-nav > .active > a:hover {
+/* .navbar-default .navbar-nav > .active > a:hover { */
     /* Inner text colour. */
-    color: rgb(245, 245, 245); 
+    /* color: rgb(245, 245, 245);  */
     /* Button background colour. */
-    background: rgb(40, 158, 212);
-}
+    /* background: rgb(40, 158, 212); */
+/* } */
 
 /* On click/touch */
 /* .navbar-default .navbar-nav > .active > a:focus {

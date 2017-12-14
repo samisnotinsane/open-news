@@ -1,75 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  
-  {% block title %}<title>{{ appname }} | {{ apptagline }}</title>{% endblock %}
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content=""> 
+  {% block title %}
+    <title>{{ appname }} | {{ apptagline }}</title>
+  {% endblock %}
+  <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
   <!-- Add additional CSS in static file -->
   {% load static %}
+  <!-- Custom styles for this template -->
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <!-- Font Awesome core CSS -->
   <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
-  <link rel="shortcut icon" type="image/png" href="{% static 'images/open_news_logo.png' %}"/>
-  {% comment %} <a href="{% url 'index' %}">
-      <img src="{% static 'images/open_news_logo.png' %}" alt="Open News" style="width:110px;height:110px;"/>
-  </a> {% endcomment %}
-  
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}" >
+  <!-- Application favicon -->
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/open_news_logo.png' %}" />
 </head>
 
 <body>
-
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-left" href="{% url 'index' %}">
-              <img id='navbar-logo' src="{% static 'images/open_news_logo.png' %}">
-            </a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'index' %}">Home</a></li>
-            <li class="dropdown">
-              <a id="dropdown-section" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Sections
-                <span class="caret"></span>
-                {% comment %} TODO: Implement dynamic loading using js. {% endcomment %}
-              </a>
-              <ul class="dropdown-menu">
-              </ul>
-            </li>
-            {% comment %} <li><a href="{% url 'sections' %}">Sections</a></li> {% endcomment %}
-            <li><a href="{% url 'articles' %}">Articles</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          </ul>
-        </div>
-      </nav>
-      <div class="col-sm-10 ">
-          {% block content %}{% endblock %}
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-left" href="{% url 'index' %}">
+          <img id='navbar-logo' src="{% static 'images/open_news_logo.png' %}">
+        </a>
       </div>
-  <!-- <div class="container-fluid"> -->
-
-    <!-- <div class="row">
-      <div class="col-sm-2">
-      {% block sidebar %}
-      <ul class="sidebar-nav">
-          <li><a href="{% url 'sections' %}">Sections</a></li>
-          <li><a href="{% url 'articles' %}">Articles</a></li>
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="dropdown">
+          <a id="dropdown-section" class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Sections
+            <span class="caret"></span>
+            {% comment %} TODO: Implement dynamic loading using js. {% endcomment %}
+          </a>
+          <ul class="dropdown-menu">
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'articles' %}">Articles</a>
+        </li>
       </ul>
-     {% endblock %}
-      </div>
-      <div class="col-sm-10 ">
-      
-      </div>
-    </div> -->
-
-  <!-- </div> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-log-in"></span> Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="col-sm-10 ">
+    {% block content %}{% endblock %}
+  </div>
+  <!-- Bootstrap core JavaScript
+   ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="{% static 'js/app.js' %}"></script>
   <script src="{% static 'js/ajax.js' %}"></script>
 </body>
+
 </html>
