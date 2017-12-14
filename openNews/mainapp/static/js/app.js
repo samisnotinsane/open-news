@@ -6,6 +6,25 @@ var ajax = new XHR();
 
 var sectionNames = [];
 
+function handleLogin() {
+    console.log("[EVENT] - click/handleLogin");
+    
+    var usr = $('#usernameLogin');
+    var pwd = $('#passwordLogin');
+    
+    $.post("/api/login/",
+        {
+            Username: usr,
+            Password: pwd
+        },
+        function(data, status) {
+            console.log('[INFO] - data: [ ' + data + ' ], status [' + status + ' ]');
+        }
+    );
+
+    return false;
+}
+
 function XHR() {
     try {
         var request = new XMLHttpRequest();

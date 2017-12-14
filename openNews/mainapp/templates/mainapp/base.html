@@ -6,9 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <meta name="author" content=""> 
-  {% block title %}
-    <title>{{ appname }} | {{ apptagline }}</title>
+  <meta name="author" content=""> {% block title %}
+  <title>{{ appname }} | {{ apptagline }}</title>
   {% endblock %}
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,7 +17,7 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <!-- Font Awesome core CSS -->
   <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/blog.css' %}" >
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
   <!-- Application favicon -->
   <link rel="shortcut icon" type="image/png" href="{% static 'images/open_news_logo.png' %}" />
 </head>
@@ -49,13 +48,87 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        {% comment %}
         <li>
           <a href="#">
             <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+        </li> {% endcomment %}
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user"></span> Register
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-lr animated flipInX" role="menu">
+            <div class="col-lg-12" style="width:270px;">
+              <div class="text-center">
+                <p>
+                  Like and comment on articles by signing up!
+                  <hr>
+                </p>
+              </div>
+              <form id="ajax-register-form" action="" method="post" role="form" autocomplete="off">
+                <div class="form-group">
+                  <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                </div>
+                <div class="form-group">
+                  <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xs-6 col-xs-offset-3">
+                      <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-info" value="Sign Up">
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" class="hide" name="token" id="token" value="7c6f19960d63f53fcd05c3e0cbc434c0">
+              </form>
+            </div>
+          </ul>
         </li>
-        <li>
-          <a href="#">
-            <span class="glyphicon glyphicon-log-in"></span> Login</a>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-log-in"></span> Login
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
+            <div class="col-lg-12" style="width:270px;">
+              <form id="ajax-login-form" onsubmit="return handleLogin()" action="" method="post" role="form" autocomplete="off">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" name="username" id="usernameLogin" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" name="password" id="passwordLogin" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-xs-5 pull-right">
+                      <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-12">
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
+              </form>
+            </div>
+          </ul>
         </li>
       </ul>
     </div>
@@ -66,7 +139,10 @@
   <!-- Bootstrap core JavaScript
    ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="{% static 'js/app.js' %}"></script>
   <script src="{% static 'js/ajax.js' %}"></script>
