@@ -1,0 +1,27 @@
+{% extends "mainapp/base.html" %}
+
+<head>
+  {% block title %}<title>Home - {{ appname }} | {{ apptagline }}</title>{% endblock %}
+</head>
+
+{% block content %}
+<div>
+  {% if num_articles > 0 %}
+    <h1 id='latest-news-index'>Latest</h1>
+    <p id='latest-headline-index'>{{ latest_article }}</p>
+  {% endif %}
+</div>
+
+
+<h2>OpenNews</h2>
+  <p>An open source publishing platform.</p>
+
+<h3>Content</h3>
+
+  <p>The site has the following record counts:</p>
+  <ul>
+    <li><strong>Sections:</strong> {{ num_sections }}</li>
+    <li><strong>Articles:</strong> {{ num_articles }}</li>
+  </ul>
+
+{% endblock %}

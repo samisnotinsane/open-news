@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Base Template</title>
+</head>
+<body>
+
+  <p>
+    {% if user.is_authenticated %}
+    <a href="">Sign Out</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>/<a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+  </p>
+
+  {% if topics %}
+    <ul>
+      {% for topic in topics %}
+        <li><a href="{% url 'spec_section' parameter=topic.topic_name.lower %}" value="{{ topic.topic_name }}">{{ topic.topic_name }} : {{ topic.topic_id }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No topics exist</p>
+  {% endif %}
+
+  {% if articles %}
+      {% for article in articles %}
+        <h3>{{ article.headline }}</h3>
+          <ul>
+            {{ article.body }}&nbsp;{{ article.published }}
+          </ul>
+      {% endfor %}
+  {% endif %}
+  <footer>
+    Created by a Genius
+  </footer>
+</body>
+</html>

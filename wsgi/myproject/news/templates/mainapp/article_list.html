@@ -1,0 +1,23 @@
+{% extends "mainapp/base.html" %}
+
+<head>
+    {% block title %}<title>Articles | Open News</title>{% endblock %}
+</head>
+
+{% block articles %}
+    {% if article_list %}
+        {% for article in article_list %}
+        <div data-url="{% url 'article_detail' article.section.topic_name.lower article.slug %}" class="detail panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{{ article.headline }}</h3>
+                </div>
+                <div class="panel-body">
+                  <p>Published : {{ article.published }}</p>
+                  <p>{{ article.body|linebreaks|truncatewords:45 }}</p>
+                </div>
+              </div>
+        {% endfor %}
+    {% else %}
+      <p>Sorry, no articles have been published yet! Please check again soon.</p>
+    {% endif %}
+{% endblock %}

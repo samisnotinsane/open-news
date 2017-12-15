@@ -1,0 +1,16 @@
+{% extends "mainapp/base.html" %}
+
+<head>
+  {% block title %}
+  <title>{{ article.headline }} | Open News</title>{% endblock %}
+</head>
+
+{% block article %}
+    {% if article %}
+    <h3>{{ article.headline }}</h3>
+        <p>Published : {{ article.published }}</p>
+        <p>{{ article.body }}</p>
+    {% else %}
+      <p>Sorry, no articles have been published yet! Please check again soon.</p>
+    {% endif %}
+{% endblock %}

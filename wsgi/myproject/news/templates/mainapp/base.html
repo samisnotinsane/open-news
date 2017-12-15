@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  {% block title %}
+    <title>{{ appname }} | {{ apptagline }}</title>
+  {% endblock %}
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <!-- Font Awesome core CSS -->
+  <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}" >
+  <!-- Application favicon -->
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/open_news_logo.png' %}" />
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-left" href="{% url 'index' %}">
+          <img id='navbar-logo' src="{% static 'images/open_news_logo.png' %}">
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+        {% block section %}
+        <li {% if request.path == "/" %}class="active"{% endif %}>
+          <a href="{% url 'index' %}">Home</a>
+        </li>
+            {% if topics %}
+                {% for topic in topics %}
+                  <li {% if request.path == '/spec_section/'|add:topic.topic_name.lower|add:"/" %}class="active"{% endif %}><a href="{% url 'spec_section' parameter=topic.topic_name.lower %}" value="{{ topic.topic_name }}" onclick="changeClass()">{{ topic.topic_name }}</a></li>
+                {% endfor %}
+            {% else %}
+              <p>Sorry, due to an error we were unable to load sections. Please try again.</p>
+            {% endif %}
+        {% endblock %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-log-in"></span> Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="col-sm-10 ">
+    {% block articles %}{% endblock %}
+    {% block article %}{% endblock %}
+  </div>
+  <!-- Bootstrap core JavaScript
+   ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+  <script src="{% static 'js/ajax.js' %}"></script>
+</body>
+</html>
