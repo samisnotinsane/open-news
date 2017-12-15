@@ -1,5 +1,7 @@
 {% extends "mainapp/base.html" %}
 
+{% comment %}Template for listing articles under a specific section.{% endcomment %}
+
 <head>
     {% block title %}<title>Articles | Open News</title>{% endblock %}
 </head>
@@ -18,6 +20,7 @@
               </div>
         {% endfor %}
     {% else %}
-      <p>Sorry, no articles have been published yet! Please check again soon.</p>
+      <h3>Oops! :\</h3>
+      <p>We haven't published any articles under this section yet! Please check again soon.</p>
     {% endif %}
 {% endblock %}
