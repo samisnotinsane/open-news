@@ -9,10 +9,68 @@
 
 {% block article %}
     {% if article %}
-    <h3>{{ article.headline }}</h3>
+      <div class="container" style="margin-left:50px;padding-right:300px;">
+        <h3>{{ article.headline }}</h3>
         <p>Published : {{ article.published }}</p>
         <p>{{ article.body }}</p>
+      </div>
+      
     {% else %}
-      <p>Sorry, no articles have been published yet! Please check again soon.</p>
+      <h3>Oh no! :\</h3>
+      <p>Unfortunately we couldn't load this page. Please try viewing another article.</p>
     {% endif %}
+
+    {% comment %}
+      Check that user is authenticated, and if so, display like dislike buttons
+      as well as comments section.
+    {% endcomment %}
+    <div class="container-fluid">
+      
+<div class="container" style="margin-left:50px;padding-right:250px;">
+  <div class="row">
+  <div class="col-md-12">
+      <div class="blog-comment">
+      <h3 class="comment-heading">Comments</h3>
+              <hr/>
+      <ul class="comments">
+      <li class="clearfix">
+        
+        <div class="post-comments">
+            <p class="meta">Dec 18, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Etiam a sapien odio, sit amet
+            </p>
+        </div>
+      </li>
+      <li class="clearfix">
+        
+        <div class="post-comments">
+            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Etiam a sapien odio, sit amet
+            </p>
+        </div>
+      
+        <ul class="comments">
+            <li class="clearfix">
+                
+                <div class="post-comments">
+                    <p class="meta">Dec 20, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Etiam a sapien odio, sit amet
+                    </p>
+                </div>
+            </li>
+        </ul>
+      </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+    </div>
+
 {% endblock %}
