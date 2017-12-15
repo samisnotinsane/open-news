@@ -9,7 +9,7 @@
 
 {% block article %}
     {% if article %}
-      <div class="container" style="margin-left:50px;padding-right:300px;">
+      <div class="container">
         <h3>{{ article.headline }}</h3>
         <p>Published : {{ article.published }}</p>
         <p>{{ article.body }}</p>
@@ -26,15 +26,15 @@
     {% endcomment %}
     <div class="container-fluid">
       
-<div class="container" style="margin-left:50px;padding-right:250px;">
+<div class="container">
   <div class="row">
   <div class="col-md-12">
       <div class="blog-comment">
       <h3 class="comment-heading">Comments</h3>
               <hr/>
       <ul class="comments">
+
       <li class="clearfix">
-        
         <div class="post-comments">
             <p class="meta">Dec 18, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
             <p>
@@ -43,8 +43,8 @@
             </p>
         </div>
       </li>
+
       <li class="clearfix">
-        
         <div class="post-comments">
             <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
             <p>
@@ -66,7 +66,13 @@
             </li>
         </ul>
       </li>
+
       </ul>
+
+      <div class="input-group">
+          <textarea class="form-control" rows="3" style="resize:none"></textarea>     
+          <span class="input-group-addon btn btn-primary">Post</span>
+      </div>
     </div>
   </div>
 </div>
